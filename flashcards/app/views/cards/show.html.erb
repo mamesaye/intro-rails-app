@@ -1,0 +1,15 @@
+<h3><%= link_to "Deck/#{params[:deck_id]}", decks_path + "/#{params[:deck_id]}" %></h3>
+<h4><%= link_to "Delete", deck_card_path(params[:deck_id], @card) , method: :delete, confirm: "Are u sure?" %>
+card : <%= @card.id %></h4>
+
+<br>
+<div>
+		front : <%= @card.front %> 
+
+		back : <%= @card.back %>
+		-
+		<%= link_to "Edit", edit_deck_card_path(params[:deck_id], @card) %>
+</div>
+
+<h4><%= link_to "Decks/index", decks_path %></h4>
+	
