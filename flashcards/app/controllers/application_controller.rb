@@ -25,4 +25,5 @@ class ApplicationController < ActionController::Base
   def signed_in?
   	current_user  #nil or #<User> ie intance of a user
   end
+  helper_method :signed_in?
 end
