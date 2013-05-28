@@ -1,4 +1,28 @@
 Flashcards::Application.routes.draw do
+
+  resources :decks do
+    resources :cards, except: :index    #remove index
+  end
+
+=begin 
+rake routes  # nested routes
+    deck_cards GET    /decks/:deck_id/cards(.:format)          cards#index
+               POST   /decks/:deck_id/cards(.:format)          cards#create
+ new_deck_card GET    /decks/:deck_id/cards/new(.:format)      cards#new
+edit_deck_card GET    /decks/:deck_id/cards/:id/edit(.:format) cards#edit
+     deck_card GET    /decks/:deck_id/cards/:id(.:format)      cards#show
+               PUT    /decks/:deck_id/cards/:id(.:format)      cards#update
+               DELETE /decks/:deck_id/cards/:id(.:format)      cards#destroy
+         decks GET    /decks(.:format)                         decks#index
+               POST   /decks(.:format)                         decks#create
+      new_deck GET    /decks/new(.:format)                     decks#new
+     edit_deck GET    /decks/:id/edit(.:format)                decks#edit
+          deck GET    /decks/:id(.:format)                     decks#show
+               PUT    /decks/:id(.:format)                     decks#update
+               DELETE /decks/:id(.:format)                     decks#destroy
+
+#other way of doing routes CRUD
+
 get "/decks" => "decks#index"
 get "/decks/new" => "decks#new"
 get "/decks/:id" => "decks#show", as: :deck
@@ -7,7 +31,30 @@ post "/decks" => "decks#create"
 get  "/decks/:id/edit" => "decks#edit"
 put  "/decks/:id" => "decks#update"
 delete "/decks/:id" => "decks#destroy"
+=end 
 
+=begin
+  
+rake routes #dynamic url  => resources :decks
+    decks GET    /decks(.:format)          decks#index
+          POST   /decks(.:format)          decks#create
+ new_deck GET    /decks/new(.:format)      decks#new
+edit_deck GET    /decks/:id/edit(.:format) decks#edit
+     deck GET    /decks/:id(.:format)      decks#show
+          PUT    /decks/:id(.:format)      decks#update
+          DELETE /decks/:id(.:format)      decks#destroy
+
+rake routes # static url
+    decks GET    /decks(.:format)          decks#index
+decks_new GET    /decks/new(.:format)      decks#new
+     deck GET    /decks/:id(.:format)      decks#show
+          POST   /decks(.:format)          decks#create
+          GET    /decks/:id/edit(.:format) decks#edit
+          PUT    /decks/:id(.:format)      decks#update
+          DELETE /decks/:id(.:format)      decks#destroy
+adama@adama-OptiPlex-780:~/Documents/mmfa/THOUGHTBOT/intro-rails-app/flashcards$
+  
+=end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
